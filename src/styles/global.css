@@ -133,6 +133,21 @@ header {
   font-size: 26px;
 }
 
+.show-mobile-inline,
+.show-tablet-inline {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .hide-tablet-inline {
+    display: none;
+  }
+  .show-tablet-inline {
+    display: inline;
+  }
+}
+
+
 .header-nav {
   display: flex;
   gap: 25px;
@@ -175,6 +190,9 @@ header {
   }
   .hide-mobile-inline {
     display: none;
+  }
+  .show-mobile-inline {
+    display: inline;
   }
   .hide-mobile-text {
     display: none;
