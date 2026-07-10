@@ -1,0 +1,184 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StepsForm from '../components/StepsForm.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import communes from '../data/communes.json';
+
+export async function getStaticPaths() {
+  return communes.map((c, index) => {
+    // Generate proximity links (previous 3 and next 3 in the array, looping around)
+    const count = communes.length;
+    const proximityIndices = [
+      (index - 3 + count) % count,
+      (index - 2 + count) % count,
+      (index - 1 + count) % count,
+      (index + 1) % count,
+      (index + 2) % count,
+      (index + 3) % count
+    ];
+    
+    const nearbyCommunes = proximityIndices.map(i => ({
+      nom: communes[i].nom,
+      slug: communes[i].slug,
+      codePostal: communes[i].codePostal
+    }));
+
+    return {
+      params: { commune: c.slug },
+      props: { commune: c, nearbyCommunes }
+    };
+  });
+}
+
+interface Props {
+  commune: typeof communes[0];
+  nearbyCommunes: { nom: string; slug: string; codePostal: string; }[];
+}
+
+const { commune, nearbyCommunes } = Astro.props;
+
+// Contextual images based on the micro-region
+let localImage = "/images/hero-monte-escalier-charente-maritime.png";
+let imageAlt = `Installation de monte-escalier à ${commune.nom} dans une maison charentaise`;
+
+if (commune.intercommunalite.includes("Littoral")) {
+  localImage = "/images/guide-ile-de-re-oleron.png";
+  imageAlt = `Monte-escalier étanche résistant aux embruns installé à ${commune.nom} en bord de mer`;
+} else if (commune.intercommunalite.includes("Rochefort")) {
+  localImage = "/images/guide-maison-charentaise.png";
+  imageAlt = `Intégration d'un fauteuil monte-escalier dans une maison charentaise à ${commune.nom}`;
+} else {
+  localImage = "/images/guide-installateur-certifie.png";
+  imageAlt = `Showroom local de monte-escalier présentant différents modèles près de ${commune.nom}`;
+}
+---
+
+<Layout 
+  title={`Monte-Escalier ${commune.nom} (${commune.codePostal}) : Prix & Devis Pose`} 
+  description={`Faites installer votre monte-escalier à ${commune.nom}. Grille de prix 2026, estimations d'aides (Anah MaPrimeAdapt', APA 17) et devis d'artisans sous ${commune.marketData.delaiMoyenJours} jours.`}
+>
+  <!-- Schema LocalBusiness & FAQ -->
+  <SchemaMarkup type="LocalBusiness" data={{
+    name: `Monte-Escalier ${commune.nom}`,
+    description: `Installation de monte-escaliers droits et courbes pour seniors à ${commune.nom} (${commune.codePostal}).`,
+    locality: commune.nom,
+    postalCode: commune.codePostal
+  }} />
+  <SchemaMarkup type="FAQPage" data={commune.faq} />
+
+  <Breadcrumb items={[
+    { label: "Villes de la Charente-Maritime", url: "/communes/" },
+    { label: commune.nom }
+  ]} />
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container two-column-layout">
+      <div>
+        <span class="badge-pill" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:white; margin-bottom:15px;">
+          📍 Proximité {commune.nom} ({commune.codePostal})
+        </span>
+        <h1 style="font-size:36px; line-height:1.2; margin-bottom:20px;">
+          Installation de Monte-Escalier à {commune.nom}
+        </h1>
+        <p style="font-size:18px; margin-bottom:25px; opacity:0.9; line-height:1.5;">
+          {commune.introText} Sécurisez votre indépendance à domicile et prévenez les risques de chute.
+        </p>
+
+        <div style="background:rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.1); border-radius:15px; padding:20px; font-size:14px; line-height:1.5;">
+          <strong>📊 Données du marché à {commune.nom} :</strong>
+          <ul style="list-style:none; margin-top:10px; display:flex; flex-direction:column; gap:8px;">
+            <li>👥 Taux de seniors de plus de 60 ans : <strong>{commune.marketData.seniorPercentage}%</strong></li>
+            <li>💼 Artisans certifiés actifs sur la zone : <strong>{commune.marketData.installateursAgrees} installateurs</strong></li>
+            <li>⏳ Délai moyen d'intervention technique : <strong>{commune.marketData.delaiMoyenJours} jours</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <StepsForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- Local Content Body -->
+  <section style="padding: 60px 0; background: white;">
+    <div class="container two-column-layout" style="align-items: flex-start;">
+      
+      <!-- Left: Local Info -->
+      <div style="font-size: 16px; line-height: 1.6; color: var(--text);">
+        
+        <!-- Local Context Image -->
+        <div style="margin-bottom: 30px; border-radius: 15px; overflow: hidden; border: 1.5px solid var(--border-color); box-shadow: var(--shadow-sm);">
+          <img src={localImage} alt={imageAlt} style="width:100%; max-height:350px; object-fit:cover;" />
+          <div style="background:var(--bg); padding:10px 15px; font-size:13px; color:var(--text-muted); font-style:italic; border-top:1px solid var(--border-color); text-align:center;">
+            Photo illustrative : {imageAlt}
+          </div>
+        </div>
+
+        <h2 style="font-size:26px; color:var(--primary); margin-bottom:15px;">Adapter son logement à {commune.nom}</h2>
+        <p style="margin-bottom:15px;">
+          {commune.accessibilityChallenge}
+        </p>
+        <p style="margin-bottom:15px;">
+          {commune.localHelp}
+        </p>
+        <p style="margin-bottom:25px;">
+          {commune.anecdotePatrimoine}
+        </p>
+
+        <!-- Technical characteristics Card -->
+        <div style="background: var(--bg); border: 1.5px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom:40px;">
+          <h3 style="font-size: 18px; color: var(--primary); margin-bottom:15px;">⚙️ Spécifications recommandées sur ce secteur :</h3>
+          <ul style="list-style:none; font-size:14px; display:flex; flex-direction:column; gap:10px;">
+            <li>🔹 Configuration conseillée : <strong>{commune.stairliftCharacteristics.typeEscalier}</strong></li>
+            <li>🔹 Type de guidage : <strong>{commune.stairliftCharacteristics.rail}</strong></li>
+            <li>🔹 Option ergonomie : <strong>{commune.stairliftCharacteristics.option}</strong></li>
+            <li>🔹 Certification : <strong>{commune.stairliftCharacteristics.chargeUtile}</strong></li>
+          </ul>
+        </div>
+
+        <!-- FAQs -->
+        <h2 style="font-size:26px; color:var(--primary); margin-bottom:20px;">Questions fréquentes à {commune.nom}</h2>
+        <div style="display:flex; flex-direction:column; gap:20px; margin-bottom:40px;">
+          {commune.faq.map(item => (
+            <div style="border-bottom:1.5px solid var(--border-color); padding-bottom:15px;">
+              <h4 style="font-size:16px; color:var(--text); margin-bottom:6px;">❓ {item.q}</h4>
+              <p style="font-size:14px; color:var(--text-muted); line-height:1.5;">{item.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right Sidebar: Proximity navigation links -->
+      <aside style="position:sticky; top:100px;">
+        <div style="background:var(--bg); border:1.5px solid var(--border-color); border-radius:15px; padding:30px; margin-bottom:30px;">
+          <h3 style="font-size:18px; color:var(--primary); margin-bottom:15px; font-weight:800;">📍 Communes à proximité :</h3>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; font-size:15px;">
+            {nearbyCommunes.map(nc => (
+              <li>
+                <a href={`/monte-escalier-${nc.slug}/`} style="text-decoration:none; color:var(--text); font-weight:bold;">
+                  👉 Monte-escalier {nc.nom} ({nc.codePostal})
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div style="margin-top:20px; text-align:center;">
+            <a href="/communes/" style="font-size:13px; font-weight:bold; color:var(--secondary); text-decoration:none;">Voir toutes les villes &rarr;</a>
+          </div>
+        </div>
+
+        <div style="background:var(--primary-light); border:1.5px solid var(--border-color); border-radius:15px; padding:30px; text-align:center;">
+          <span style="font-size:40px;">💶</span>
+          <h3 style="font-size:18px; color:var(--primary); margin:15px 0 10px;">Estimez vos subventions RGE</h3>
+          <p style="font-size:14px; color:var(--text-muted); line-height:1.4; margin-bottom:20px;">
+            MaPrimeAdapt' financé par l'Anah et l'APA 17 cumulés permettent de réduire le reste à charge.
+          </p>
+          <a href="/devis/" class="btn-primary" style="width:100%;">Lancer le calcul &rarr;</a>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+</Layout>

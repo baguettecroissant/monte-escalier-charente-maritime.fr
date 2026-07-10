@@ -1,0 +1,191 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const activeTab = 'tarifs';
+---
+
+<Layout title="Tarifs Monte-Escalier Charente-Maritime 2026 : Prix Droit & Courbe" description="Découvrez la grille de tarifs complète pour l'achat et la pose d'un monte-escalier en Charente-Maritime (17). Estimations détaillées par modèle (droit, tournant, extérieur) et aides." activeTab={activeTab}>
+  <Breadcrumb items={[{ label: "Grille de tarifs 2026" }]} />
+
+  <!-- Hero sub header -->
+  <section style="background:linear-gradient(135deg, var(--primary) 0%, #083344 100%); padding: 50px 0; color: white; text-align: center;">
+    <div class="container">
+      <span class="badge-pill" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:white; margin-bottom:15px;">
+        Mise à jour : Janvier 2026
+      </span>
+      <h1 style="font-size:32px;">Prix et Modèles de Monte-Escalier en Charente-Maritime</h1>
+      <p style="font-size:18px; margin-top:10px; opacity:0.9;">
+        Combien coûte la pose d'un monte-escalier ? Retrouvez nos fourchettes indicatives TTC posé.
+      </p>
+    </div>
+  </section>
+
+  <!-- Prices Grid -->
+  <section style="padding: 60px 0; background: white;">
+    <div class="container">
+      <div class="grid-3" style="margin-bottom: 50px;">
+        
+        <!-- Droit -->
+        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <span style="font-size:32px; display:block; margin-bottom:10px;">📏</span>
+            <h3 style="font-size:20px; color:var(--primary); margin-bottom:8px;">Modèle Droit</h3>
+            <p style="font-size:14px; color:var(--text-muted); margin-bottom:15px;">Pour escaliers rectilignes d'une seule volée, sans virage ni palier.</p>
+            <ul style="font-size:15px; margin-bottom:20px; display:flex; flex-direction:column; gap:8px;">
+              <li>✔️ Rail en aluminium anodisé extra-plat</li>
+              <li>✔️ Siège pivotant manuellement en haut d'escalier</li>
+              <li>✔️ Ceinture de sécurité à enrouleur standard</li>
+              <li>✔️ Batteries de secours 24V DC intégrées</li>
+            </ul>
+          </div>
+          <div>
+            <div style="border-top:1.5px solid var(--border-color); padding-top:15px; text-align:center;">
+              <span style="font-size:13px; color:var(--text-muted); display:block;">Tarif indicatif posé</span>
+              <span class="price-tag" style="font-size:26px; display:block; margin:5px 0;">2 400 € - 4 800 €</span>
+              <span style="font-size:11px; color:var(--text-muted);">* Hors subventions Anah & APA 17</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Courbe -->
+        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-color:var(--secondary); box-shadow:0 0 0 2px rgba(21,128,61,0.1);">
+          <div>
+            <span style="font-size:32px; display:block; margin-bottom:10px;">🔄</span>
+            <h3 style="font-size:20px; color:var(--primary); margin-bottom:8px;">Modèle Courbe / Tournant</h3>
+            <p style="font-size:14px; color:var(--text-muted); margin-bottom:15px;">Pour escaliers avec virages, paliers intermédiaires ou en colimaçon.</p>
+            <ul style="font-size:15px; margin-bottom:20px; display:flex; flex-direction:column; gap:8px;">
+              <li>✔️ Rail tubulaire en acier conçu sur mesure en usine</li>
+              <li>✔️ Relevé de cotes laser photogrammétrique 3D</li>
+              <li>✔️ Pivotement automatique ou manuel du siège</li>
+              <li>✔️ Commande intuitive par joystick sur accoudoir</li>
+            </ul>
+          </div>
+          <div>
+            <div style="border-top:1.5px solid var(--border-color); padding-top:15px; text-align:center;">
+              <span style="font-size:13px; color:var(--text-muted); display:block;">Tarif indicatif posé</span>
+              <span class="price-tag" style="font-size:26px; display:block; margin:5px 0; color:var(--secondary);">5 200 € - 10 500 €</span>
+              <span style="font-size:11px; color:var(--text-muted);">* Hors subventions Anah & APA 17</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extérieur -->
+        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <span style="font-size:32px; display:block; margin-bottom:10px;">🌿</span>
+            <h3 style="font-size:20px; color:var(--primary); margin-bottom:8px;">Modèle Extérieur Marine</h3>
+            <p style="font-size:14px; color:var(--text-muted); margin-bottom:15px;">Conçu pour le littoral atlantique, résistant aux embruns marins.</p>
+            <ul style="font-size:15px; margin-bottom:20px; display:flex; flex-direction:column; gap:8px;">
+              <li>✔️ Traitement anti-corrosion de grade marine</li>
+              <li>✔️ Visserie et fixations en acier inoxydable A4</li>
+              <li>✔️ Revêtement étanche IPX5 anti-UV & housse étanche</li>
+              <li>✔️ Clé de verrouillage extérieure de sécurité</li>
+            </ul>
+          </div>
+          <div>
+            <div style="border-top:1.5px solid var(--border-color); padding-top:15px; text-align:center;">
+              <span style="font-size:13px; color:var(--text-muted); display:block;">Tarif indicatif posé</span>
+              <span class="price-tag" style="font-size:26px; display:block; margin:5px 0;">4 500 € - 9 500 €</span>
+              <span style="font-size:11px; color:var(--text-muted);">* Hors subventions Anah & APA 17</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Complete Price Table -->
+      <div style="margin-bottom: 50px;">
+        <h2 style="font-size:24px; color:var(--primary); margin-bottom:20px; text-align:center;">📋 Grille Tarifaire Complète 2026 en Charente-Maritime</h2>
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:collapse; margin-top:15px; font-size:16px;">
+            <thead>
+              <tr style="background-color:var(--primary-light); border-bottom:2px solid var(--border-color);">
+                <th style="padding:15px; text-align:left; color:var(--primary); font-weight:800;">Prestation / Modèle</th>
+                <th style="padding:15px; text-align:left; color:var(--primary); font-weight:800;">Description de l'équipement</th>
+                <th style="padding:15px; text-align:right; color:var(--primary); font-weight:800;">Tarif TTC Posé</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border-color);">
+                <td style="padding:15px; font-weight:bold;">Monte-escalier droit</td>
+                <td style="padding:15px; color:var(--text-muted);">Rail standard alu, siège pivotant, ceinture 3 points</td>
+                <td style="padding:15px; text-align:right; font-weight:bold;" class="price-tag">2 400 – 4 800€</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-color);">
+                <td style="padding:15px; font-weight:bold;">Monte-escalier courbe</td>
+                <td style="padding:15px; color:var(--text-muted);">Rail sur mesure, virage 90-180°, capteurs obstacles</td>
+                <td style="padding:15px; text-align:right; font-weight:bold;" class="price-tag">5 200 – 10 500€</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-color);">
+                <td style="padding:15px; font-weight:bold;">Modèle extérieur marine</td>
+                <td style="padding:15px; color:var(--text-muted);">Galvanisé + anti-corrosion sel, siège waterproof IPX5</td>
+                <td style="padding:15px; text-align:right; font-weight:bold;" class="price-tag">4 500 – 9 500€</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-color);">
+                <td style="padding:15px; font-weight:bold;">Plateforme élévatrice PMR</td>
+                <td style="padding:15px; color:var(--text-muted);">Accès fauteuil roulant, charge 250kg, commande murale</td>
+                <td style="padding:15px; text-align:right; font-weight:bold;" class="price-tag">7 000 – 13 500€</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-color);">
+                <td style="padding:15px; font-weight:bold;">Mini-ascenseur privatif</td>
+                <td style="padding:15px; color:var(--text-muted);">Cabine fermée, 2-3 étages, silencieux et sécurisé</td>
+                <td style="padding:15px; text-align:right; font-weight:bold;" class="price-tag">13 000 – 28 000€</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-color);">
+                <td style="padding:15px; font-weight:bold;">Modèle reconditionné</td>
+                <td style="padding:15px; color:var(--text-muted);">Révisé usine, garantie 1 an, rail adapté sur mesure</td>
+                <td style="padding:15px; text-align:right; font-weight:bold;" class="price-tag">1 700 – 3 300€</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-color);">
+                <td style="padding:15px; font-weight:bold;">Location mensuelle</td>
+                <td style="padding:15px; color:var(--text-muted);">Tout inclus : mise à disposition + entretien + SAV + dépannage 7j/7</td>
+                <td style="padding:15px; text-align:right; font-weight:bold;" class="price-tag">70 – 130€/mois</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-color);">
+                <td style="padding:15px; font-weight:bold;">Entretien annuel</td>
+                <td style="padding:15px; color:var(--text-muted);">Visite technique + lubrification + contrôle des batteries</td>
+                <td style="padding:15px; text-align:right; font-weight:bold;" class="price-tag">120 – 250€/an</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-color);">
+                <td style="padding:15px; font-weight:bold;">Démontage / reprise</td>
+                <td style="padding:15px; color:var(--text-muted);">Désinstallation de l'ancien matériel + recyclage propre</td>
+                <td style="padding:15px; text-align:right; font-weight:bold;" class="price-tag">250 – 500€</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TVA and accessories notes -->
+      <div style="background:var(--primary-light); border:1.5px solid var(--border-color); border-radius:var(--radius-md); padding:35px; margin-bottom:50px;">
+        <h2 style="font-size:24px; color:var(--primary); margin-bottom:15px; text-align:center;">💡 Réduction fiscale et taux de TVA à 5.5%</h2>
+        <div class="grid-3" style="gap:25px; margin-top:20px; text-align:left;">
+          <div>
+            <h4 style="color:var(--text); margin-bottom:5px;">TVA Réduite à 5,5%</h4>
+            <p style="font-size:14px; color:var(--text-muted); line-height:1.5;">
+              La pose d'un monte-escalier par un artisan certifié RGE dans un logement de plus de 2 ans bénéficie automatiquement du taux de TVA réduit de 5.5% au lieu de 20%.
+            </p>
+          </div>
+          <div>
+            <h4 style="color:var(--text); margin-bottom:5px;">Crédit d'Impôt 25%</h4>
+            <p style="font-size:14px; color:var(--text-muted); line-height:1.5;">
+              Tous les ménages, qu'ils soient imposables ou non, bénéficient d'un crédit d'impôt direct de 25% sur la facture TTC (limité à 5000€ pour une personne seule, 10000€ pour un couple).
+            </p>
+          </div>
+          <div>
+            <h4 style="color:var(--text); margin-bottom:5px;">Dépannage & Entretien</h4>
+            <p style="font-size:14px; color:var(--text-muted); line-height:1.5;">
+              Un contrat annuel d'entretien coûte en moyenne entre 120 et 250 € par an, couvrant le contrôle des batteries, le serrage des fixations et le graissage du rail.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <p style="margin-bottom:20px; font-weight:700; color:var(--text);">Combien allez-vous être remboursé pour votre installation ?</p>
+        <a href="/devis/" class="btn-primary">Estimer mes subventions et aides en ligne &rarr;</a>
+      </div>
+    </div>
+  </section>
+</Layout>

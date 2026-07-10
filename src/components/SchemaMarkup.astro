@@ -1,0 +1,86 @@
+---
+interface Props {
+  type: 'Organization' | 'LocalBusiness' | 'FAQPage' | 'Article';
+  data: any;
+}
+
+const { type, data } = Astro.props;
+
+let schema: any = {};
+
+if (type === 'Organization') {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Monte-Escalier Charente-Maritime",
+    "url": "https://monte-escalier-charente-maritime.fr",
+    "logo": "https://monte-escalier-charente-maritime.fr/images/logo.png",
+    "description": "Service de conseil et devis gratuit pour l'installation de monte-escaliers seniors et PMR en Charente-Maritime (17).",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "La Rochelle",
+      "postalCode": "17000",
+      "addressRegion": "Nouvelle-Aquitaine",
+      "addressCountry": "FR"
+    }
+  };
+} else if (type === 'LocalBusiness') {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": data.name || "Monte-Escalier Charente-Maritime",
+    "description": data.description || "Installation et devis de monte-escaliers en Charente-Maritime.",
+    "url": data.url || "https://monte-escalier-charente-maritime.fr",
+    "telephone": data.telephone || "05 46 00 00 00",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": data.street || "",
+      "addressLocality": data.locality || "La Rochelle",
+      "postalCode": data.postalCode || "17000",
+      "addressRegion": "Charente-Maritime",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": data.latitude || 46.1603,
+      "longitude": data.longitude || -1.1511
+    }
+  };
+} else if (type === 'FAQPage') {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": data.map((item: any) => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a
+      }
+    }))
+  };
+} else if (type === 'Article') {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": data.title,
+    "description": data.description,
+    "image": data.image ? `https://monte-escalier-charente-maritime.fr${data.image}` : "https://monte-escalier-charente-maritime.fr/images/hero-monte-escalier-charente-maritime.png",
+    "datePublished": data.publishDate || "2026-07-06",
+    "author": {
+      "@type": "Person",
+      "name": data.author || "Conseiller Mobilité Senior"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Monte-Escalier Charente-Maritime",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://monte-escalier-charente-maritime.fr/images/logo.png"
+      }
+    }
+  };
+}
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

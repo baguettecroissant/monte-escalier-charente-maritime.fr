@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StepsForm from '../components/StepsForm.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const activeTab = 'ile';
+---
+
+<Layout title="Monte-Escalier Île de Ré & Oléron : Solutions Insulaires & Littoral" description="Comment installer un monte-escalier sur l'île de Ré, l'île d'Oléron ou le littoral charentais ? Défis techniques, logistique, embruns marins et entretien." activeTab={activeTab}>
+  <Breadcrumb items={[{ label: "Solutions Îles de Ré & Oléron" }]} />
+
+  <!-- Hero block -->
+  <section style="background: linear-gradient(135deg, #075985 0%, #166534 100%); padding: 60px 0; color: white; text-align: center;">
+    <div class="container" style="max-width: 900px;">
+      <span class="badge-pill" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:white; margin-bottom:15px;">
+        Logistique & Spécificités Insulaires
+      </span>
+      <h1 style="font-size:36px; line-height:1.2;">Sécuriser son Escalier sur l'Île de Ré et l'Île d'Oléron</h1>
+      <p style="font-size:18px; margin-top:10px; opacity:0.9; line-height:1.5;">
+        Traitement contre la corrosion saline, logistique d'accès par les ponts et résidences secondaires : toutes les réponses pour vivre sur nos îles en toute autonomie.
+      </p>
+    </div>
+  </section>
+
+  <!-- Two Column Layout content -->
+  <section style="padding: 60px 0; background: white;">
+    <div class="container two-column-layout">
+      
+      <!-- Content side -->
+      <div style="font-size: 16px; line-height: 1.6; color: var(--text);">
+        <h2 style="font-size:26px; color:var(--primary); margin-bottom:15px;">Le défi de l'accessibilité senior en milieu insulaire atlantique</h2>
+        <p style="margin-bottom:15px;">
+          L'île de Ré et l'île d'Oléron abritent une importante population de retraités et de seniors, propriétaires de charmantes maisons traditionnelles blanches aux volets bleus ou de superbes villas littorales. Cependant, l'éloignement continental et l'environnement marin imposent des contraintes techniques particulières pour l'installation et l'entretien des monte-escaliers.
+        </p>
+
+        <h3 style="font-size:20px; margin:25px 0 10px; color:var(--text);">Les solutions et contraintes spécifiques aux îles :</h3>
+        <ul style="display:flex; flex-direction:column; gap:12px; list-style:none; margin-bottom:25px;">
+          <li>⚙️ <strong>Traitement anti-corrosion de grade marine</strong> : À moins de 5 km de l'océan, l'air salin accélère la corrosion des métaux. Pour les escaliers extérieurs (jardins, perrons) ou les pièces humides, nos installateurs préconisent impérativement l'usage de rails galvanisés à chaud, de visserie en inox A4 et d'une motorisation étanche IPX5.</li>
+          <li>🚛 <strong>Logistique de transport maîtrisée</strong> : Nos techniciens partenaires basés sur le littoral effectuent régulièrement des passages quotidiens sur les ponts d'Oléron et de Ré. Les prises de cotes 3D et les livraisons de rails sur mesure sont planifiées pour éviter les pics de circulation estivale.</li>
+          <li>🔑 <strong>Sécurité pour les résidences secondaires</strong> : Si le logement fait l'objet d'une location saisonnière ou est inoccupé plusieurs mois par an, nos modèles intègrent une clé de contact amovible. Retirez la clé pour interdire l'utilisation de l'appareil par de jeunes enfants et économiser les batteries.</li>
+        </ul>
+
+        <div style="background:var(--primary-light); border:1px solid var(--border-color); border-radius:12px; padding:20px; margin-bottom:20px;">
+          <h4 style="color:var(--primary); margin-bottom:5px;">💡 L'avis de l'expert technique 17 :</h4>
+          <p style="font-size:14px; color:var(--text-muted); line-height:1.5;">
+            "Pour les résidences secondaires inoccupées l'hiver, nous recommandons de laisser le monte-escalier branché sur sa prise d'alimentation et positionné sur ses plots de charge. Cela maintient la durée de vie des batteries de secours 24V DC intégrées, même en cas de coupure de courant réseau passagère due aux tempêtes hivernales."
+          </p>
+        </div>
+      </div>
+
+      <!-- Form side -->
+      <div>
+        <h3 style="font-size:20px; color:var(--primary); margin-bottom:15px; text-align:center;">Estimer mon projet insulaire</h3>
+        <StepsForm />
+      </div>
+
+    </div>
+  </section>
+</Layout>
