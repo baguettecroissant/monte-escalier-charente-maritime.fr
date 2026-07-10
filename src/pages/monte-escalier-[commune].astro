@@ -128,6 +128,14 @@ if (commune.intercommunalite.includes("Littoral")) {
           {commune.anecdotePatrimoine}
         </p>
 
+        <div style="background:var(--primary-light); border-left:4px solid var(--primary); padding:15px 20px; border-radius:0 8px 8px 0; margin-bottom:30px; font-size:15px;">
+          🏢 <strong>Besoin d'un devis d'artisan ?</strong><br/>
+          Consultez la liste et comparez les professionnels qualifiés : 
+          <a href={`/installateur-monte-escalier-${commune.slug}/`} style="font-weight:bold; color:var(--primary); text-decoration:underline;">
+            Trouver un installateur RGE à {commune.nom} &rarr;
+          </a>
+        </div>
+
         <!-- Technical characteristics Card -->
         <div style="background: var(--bg); border: 1.5px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom:40px;">
           <h3 style="font-size: 18px; color: var(--primary); margin-bottom:15px;">⚙️ Spécifications recommandées sur ce secteur :</h3>
