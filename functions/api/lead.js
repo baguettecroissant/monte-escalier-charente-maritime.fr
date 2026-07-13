@@ -56,7 +56,7 @@ export async function onRequestPost(context) {
     if (!prenom || prenom.trim().length < 2) errors.push('Prénom requis (2 caractères minimum)');
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Email invalide');
     if (!tel || tel.replace(/\D/g, '').length < 10) errors.push('Téléphone invalide (10 chiffres minimum)');
-    if (!adresse || adresse.trim().length < 5) errors.push('Adresse complète requise');
+    const cleanAdresse = (adresse || '').trim() || 'Adresse non renseignée';
     if (!cp || !CP_PATTERN.test(cp)) errors.push(`Code postal invalide (doit commencer par ${DEPT_CODE})`);
     if (!ville || ville.trim().length < 2) errors.push('Ville requise');
     if (!catId) errors.push('Projet requis');
@@ -73,7 +73,7 @@ export async function onRequestPost(context) {
     const catName = CAT_NAMES[Number(catId)] || `Catégorie ${catId}`;
     const workDescription = `Projet: ${catName} en ${ville} (${cp}). Configuration: ${chauffageActuel || 'Non renseigné'}. Délai souhaité: ${
       delais === '1' ? 'Immédiat' : delais === '2' ? 'Moins de 3 mois' : 'Plus de 3 mois'
-    }. Adresse chantier: ${adresse}, ${cp} ${ville}.`;
+    }. Adresse chantier: ${cleanAdresse}, ${cp} ${ville}.`;
 
     const clientIp = context.request.headers.get('CF-Connecting-IP') || '';
     const userAgent = context.request.headers.get('User-Agent') || '';
@@ -90,7 +90,7 @@ export async function onRequestPost(context) {
         prenom: (prenom || '').trim(),
         email: email.trim(),
         telephone: cleanTel,
-        adresse: (adresse || '').trim(),
+        adresse: cleanAdresse,
         ville: ville.trim(),
         code_postal: cp,
         departement: DEPT_CODE,
@@ -168,7 +168,7 @@ export async function onRequestPost(context) {
       email: email.trim(),
       tel: isMobile ? '' : cleanTel,
       mobile: isMobile ? cleanTel : '',
-      adresse1: adresse.trim(),
+      adresse1: cleanAdresse,
       adresse2: '',
       cp: cp,
       ville: ville.trim(),
